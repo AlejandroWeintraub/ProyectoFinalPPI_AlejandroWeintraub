@@ -16,7 +16,6 @@
 
     $query = "INSERT INTO Usuarios (Nombre_Usuario, Email, pass, F_Nacimiento, Numero_Tarjeta, Direccion_Postal, Tipo_Usuario) 
     VALUES ('$Nombre_Usuario', '$Email', '$pass', '$F_Nacimiento', '$Numero_Tarjeta', '$Direccion_Postal', 'user')";    
-    echo $query;   
     $result = mysqli_query($con, $query);
 
     if ($result) {

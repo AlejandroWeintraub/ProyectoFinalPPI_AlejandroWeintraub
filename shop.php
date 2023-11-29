@@ -117,24 +117,6 @@ https://templatemo.com/tm-559-zay-shop
     <!-- Close Header -->
 
     <!-- Shopping Cart Modal -->
-    <!-- Script y función para recargar el modal -->
-<script>
-    function recargarModal() {
-        var modal = $('#shoppingcart');
-        // Mostrar el modal
-        modal.modal('show');
-        // Puedes recargar el modal después de un cierto tiempo
-        setTimeout(function () {
-            modal.modal('hide'); // Ocultar el modal
-            modal.modal('show'); // Mostrar el modal nuevamente
-        }, tiempo);
-    }
-    // Llamar a la función cuando el documento esté listo
-    $(document).ready(function () {
-        recargarModal('miModal', 5000); // 5000 milisegundos = 5 segundos
-    });
-</script>
-
     <div class="modal fade bd-example-modal-xl" tabindex="-1" id="shoppingcart" role="dialog"
         aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
@@ -168,8 +150,6 @@ https://templatemo.com/tm-559-zay-shop
                                                     </div>
 
                                                     <!-- Starts Products on the Shopping Cart -->
-
-
                                                     <?php
                                                     $user_id = $_SESSION['user_id'];
                                                     error_reporting(E_ALL);
@@ -398,12 +378,14 @@ https://templatemo.com/tm-559-zay-shop
                 $result = mysqli_query($con, "SELECT * FROM Product;");
 
                 while ($row = mysqli_fetch_array($result)) {
-
+                    
+                    $imagen_base64 = base64_encode($row['Imagen']);
+                    $imagen_src = 'data:image/jpeg;base64,' . $imagen_base64;
                     echo '<div class="col-md-4">
                     <div class="card mb-4 product-wap rounded-0">
                         <form action="agregarcarrito.php" method="post"> 
                             <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="assets/img/shop_01.jpg">
+                                <img class="card-img rounded-0 img-fluid" src="' . $imagen_src . '">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>

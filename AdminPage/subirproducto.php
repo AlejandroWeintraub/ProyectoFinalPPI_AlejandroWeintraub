@@ -2,13 +2,6 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-echo $_POST['Producto'];
-echo $_POST['descripcion'];
-echo $_POST['precio'];
-echo $_POST['Cantidad'];
-echo $_POST['fabricante'];
-echo $_POST['origen'];
-echo $_POST['categoria'];
 
 
 

@@ -104,7 +104,6 @@
       </li>
     </ul>
   </div>
-
   <main class="form-signin w-100 m-auto">
      <!-- Alert if login failed -->
   <?php
@@ -182,8 +181,5 @@
       </div>
     </div>
   </main>
-
-
 </body>
-
 </html>

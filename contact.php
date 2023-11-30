@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Zay Shop - Product Listing Page</title>
+    <title>Zay Shop - Contact</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -17,6 +17,11 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+
+    <!-- Load map styles -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
     <!--
     
 TemplateMo 559 Zay Shop
@@ -24,7 +29,6 @@ TemplateMo 559 Zay Shop
 https://templatemo.com/tm-559-zay-shop
 
 -->
-
 </head>
 
 <body>
@@ -226,106 +230,104 @@ https://templatemo.com/tm-559-zay-shop
                                                             <input required type="hidden" name="product_id"
                                                                 value="<?= $row['ID_Producto'] ?>">
                                                         </div>
-                                                        </form>
-                                                        <div>
-                                                            <form action="eliminardelcarrito.php" method="post">
-                                                                <button type="submit" class="btn btn-link"
-                                                                    style="color: #cecece;">
-                                                                    <i class="fas fa-trash-alt"></i>
-                                                                    <input required type="hidden" name="product_id"
-                                                                        value="<?= $row['ID_Producto'] ?>">
-                                                                </button>
-                                                           
-                                                        </div>
-
-                                                    </div>
-
                                                 </form>
+                                                <div>
+                                                    <form action="eliminardelcarrito.php" method="post">
+                                                        <button type="submit" class="btn btn-link" style="color: #cecece;">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                            <input required type="hidden" name="product_id"
+                                                                value="<?= $row['ID_Producto'] ?>">
+                                                        </button>
+
+                                                </div>
 
                                             </div>
-                                        </div>
-                                        <?php
-                                        $total += intval($row['cantidad']) * floatval($row['precio']);
-                                    }
-                                    ?>
-                                    <!-- End Products on the Shopping Cart -->
 
-                                </div>
-
-                                <!-- Start Credit details -->
-                                <div class="col-lg-5">
-                                    <div class="card bg-primary text-white rounded-3">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between align-items-center mb-4">
-                                                <h5 class="mb-0">Card details</h5>
-                                            </div>
-
-                                            <!-- Start Form -->
-                                            <form action='procesarpago.php' method='post'>
-                                                <div class='form-outline form-white mb-4'>
-                                                    <input required type='text' id='typeText' class='form-control form-control-lg'
-                                                        size='17' placeholder='1234 5678 9012 3457' minlength='19'
-                                                        maxlength='19' />
-                                                    <label class='form-label' for='typeText'>Card Number</label>
-                                                </div>
-                                                <div class='row mb-4'>
-                                                    <div class='col-md-6'>
-                                                        <div class='form-outline form-white'>
-                                                            <input required type='text' id='typeExp'
-                                                                class='form-control form-control-lg' placeholder='MM/YYYY'
-                                                                size='7' id='exp' minlength='7' maxlength='7' />
-                                                            <label class='form-label' for='typeExp'>Expiration</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class='col-md-6'>
-                                                        <div class='form-outline form-white'>
-                                                            <input required type='password' id='typeCvv'
-                                                                class='form-control form-control-lg'
-                                                                placeholder='&#9679;&#9679;&#9679;' size='1' minlength='3'
-                                                                maxlength='3' />
-                                                            <label class='form-label' for='typeCvv'>Cvv</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <hr class='my-4'>
-                                                <div class='d-flex justify-content-between mb-4'>
-                                                    <p class='mb-2'>Total (Incl. taxes)</p>
-                                                    <p class='mb-2 total-amount' id='total'>$
-                                                        <?= number_format($total, 2) ?>
-                                                    </p>
-                                                </div>
-                                                <button type='submit' class='btn btn-info btn-block btn-lg'>
-                                                    <div class='d-flex justify-content-between'>
-                                                        <span>Checkout <i
-                                                                class='fas fa-long-arrow-alt-right ms-2'></i></span>
-                                                    </div>
-                                                </button>
                                             </form>
 
-
-                                            <!-- End Form -->
                                         </div>
                                     </div>
-                                </div>
+                                    <?php
+                                    $total += intval($row['cantidad']) * floatval($row['precio']);
+                                    }
+                                    ?>
+                                <!-- End Products on the Shopping Cart -->
+
                             </div>
-                        </div>
-                    </div>
-                <?php else: ?>
-                    <div class="modal-body">
-                        <div class="container py-5 h-100">
-                            <div class="row d-flex justify-content-center align-items-center h-100">
-                                <div class="d-flex justify-content-between align-items-center mb-4">
-                                    <div>
-                                        <h2>To continue shopping please login first or create an account</h2>
-                                        <a href="login.php" class="btn btn-primary">Go to Login Page</a>
+
+                            <!-- Start Credit details -->
+                            <div class="col-lg-5">
+                                <div class="card bg-primary text-white rounded-3">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-4">
+                                            <h5 class="mb-0">Card details</h5>
+                                        </div>
+
+                                        <!-- Start Form -->
+                                        <form action='procesarpago.php' method='post'>
+                                            <div class='form-outline form-white mb-4'>
+                                                <input required type='text' id='typeText' class='form-control form-control-lg'
+                                                    size='17' placeholder='1234 5678 9012 3457' minlength='19'
+                                                    maxlength='19' />
+                                                <label class='form-label' for='typeText'>Card Number</label>
+                                            </div>
+                                            <div class='row mb-4'>
+                                                <div class='col-md-6'>
+                                                    <div class='form-outline form-white'>
+                                                        <input required type='text' id='typeExp' class='form-control form-control-lg'
+                                                            placeholder='MM/YYYY' size='7' id='exp' minlength='7'
+                                                            maxlength='7' />
+                                                        <label class='form-label' for='typeExp'>Expiration</label>
+                                                    </div>
+                                                </div>
+                                                <div class='col-md-6'>
+                                                    <div class='form-outline form-white'>
+                                                        <input required type='password' id='typeCvv'
+                                                            class='form-control form-control-lg'
+                                                            placeholder='&#9679;&#9679;&#9679;' size='1' minlength='3'
+                                                            maxlength='3' />
+                                                        <label class='form-label' for='typeCvv'>Cvv</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class='my-4'>
+                                            <div class='d-flex justify-content-between mb-4'>
+                                                <p class='mb-2'>Total (Incl. taxes)</p>
+                                                <p class='mb-2 total-amount' id='total'>$
+                                                    <?= number_format($total, 2) ?>
+                                                </p>
+                                            </div>
+                                            <button type='submit' class='btn btn-info btn-block btn-lg'>
+                                                <div class='d-flex justify-content-between'>
+                                                    <span>Checkout <i class='fas fa-long-arrow-alt-right ms-2'></i></span>
+                                                </div>
+                                            </button>
+                                        </form>
+
+
+                                        <!-- End Form -->
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                <?php endif; ?>
-            </div>
+                </div>
+            <?php else: ?>
+                <div class="modal-body">
+                    <div class="container py-5 h-100">
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div>
+                                    <h2>To continue shopping please login first or create an account</h2>
+                                    <a href="login.php" class="btn btn-primary">Go to Login Page</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
         </div>
+    </div>
     </div>
 
 
@@ -557,256 +559,66 @@ https://templatemo.com/tm-559-zay-shop
             </div>
         </div>
     <?php endif; ?>
-    <!-- Start Content -->
-    <div class="container py-5">
-        <?php
-
-        $purchaseStatus = isset($_GET['purchase']) ? $_GET['purchase'] : '';
-
-        if ($purchaseStatus === 'success') {
-            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            Purchase successful!
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>';
-        } elseif ($purchaseStatus === 'failure') {
-            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            Purchase failed! Insufficient stock.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>';
-        } elseif (isset($_GET['error']) && $_GET['error'] === 'stock') {
-            // Display an alert if the error parameter is 'stock'
-            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Quantity exceeds available stock! Please choose a lower quantity.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>';
-        }
-        ?>
-        <div class="row">
-
-            <?php
-
-            error_reporting(E_ALL);
 
 
-            $con = mysqli_connect("localhost", "root", "", "Tienda");
+    <!-- Start Content Page -->
+    <div class="container-fluid bg-light py-5">
+        <div class="col-md-6 m-auto text-center">
+            <h1 class="h1">Contact Us</h1>
 
-            if (mysqli_connect_errno()) {
-                echo "Failed to connect to MySQL: " . mysqli_connect_error();
-            }
-
-
-            $result = mysqli_query($con, "SELECT * FROM Product;");
-
-
-            while ($row = mysqli_fetch_array($result)) {
-
-                $image_base64 = base64_encode($row['Imagen']);
-                $image_src = 'data:image/jpeg;base64,' . $image_base64;
-                $cantidad = $row['Cantidad'];
-                ?>
-
-                <div class="col-md-4">
-                    <div class="card mb-4 product-wap rounded-0">
-                        <form action="agregarcarrito.php" method="post">
-                            <div class="card rounded-0">
-
-                                <img class="card-img rounded-0 img-fluid" src="<?= $image_src ?>"
-                                    alt="<?= $row['Nombre'] ?>">
-                                <div
-                                    class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <?php if (isset($_SESSION['user_id'])): ?>
-
-                                        <li>
-                                            <a class="btn btn-success text-white mt-2"
-                                                href="shop-single.php?id=<?= $row['ID_Producto'] ?>">
-                                                <i class="far fa-eye"></i>
-                                            </a>
-                                        </li>
-                                        <br>
-                                        <li>
-                                            <?php if ($row['Cantidad'] <= 0) {
-
-                                            } else {
-                                                echo '  <button type="submit" name="add_to_cart" class="btn btn-success text-white mt-2">
-                                                <i class="fas fa-cart-plus"></i>
-                                            </button>';
-                                            } ?>
-                                        </li>
-                                    <?php else: ?>
-
-                                        <li>
-                                            <a class="btn btn-success text-white mt-2"
-                                                href="shop-single.php?id=<?= $row['ID_Producto'] ?>">
-                                                <h5> Login to add products to your shopping cart. </h5>
-                                            </a>
-                                        </li>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                            <div class="card-body">
-
-                                <a href="shop-single.php?id=<?= $row['ID_Producto'] ?>" class="h3 text-decoration-none">
-                                    <h4 class="">
-                                        <?= $row['Nombre'] ?>
-                                    </h4>
-                                </a>
-                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                    <li class="pt-2">
-                                        <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-                                        <span
-                                            class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-                                        <span
-                                            class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-                                        <span
-                                            class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-                                        <span
-                                            class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-                                    </li>
-                                </ul>
-                                <h4 class="text-center mb-0">$
-                                    <?= $row['Precio'] ?>
-                                </h4>
-
-                                <?php
-                                if ($row['Cantidad'] <= 0) {
-                                    echo ' <h5 class="text-center mb-0">
-                                    No Disponible por el momento
-                                </h5>';
-                                }
-                                ?>
-
-                                <input required type="hidden" name="product_id" value="<?= $row['ID_Producto'] ?>">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <?php
-            }
-
-            mysqli_close($con);
-            ?>
         </div>
     </div>
-    <!-- End Content -->
 
-
-    <!-- Start Brands -->
-    <section class="bg-light py-5">
-        <div class="container my-4">
-            <div class="row text-center py-3">
-                <div class="col-lg-6 m-auto">
-                    <h1 class="h1">Our Brands</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        Lorem ipsum dolor sit amet.
-                    </p>
-                </div>
-                <div class="col-lg-9 m-auto tempaltemo-carousel">
-                    <div class="row d-flex flex-row">
-                        <!--Controls-->
-                        <div class="col-1 align-self-center">
-                            <a class="h1" href="#multi-item-example" role="button" data-bs-slide="prev">
-                                <i class="text-light fas fa-chevron-left"></i>
-                            </a>
-                        </div>
-                        <!--End Controls-->
-
-                        <!--Carousel Wrapper-->
-                        <div class="col">
-                            <div class="carousel slide carousel-multi-item pt-2 pt-md-0" id="multi-item-example"
-                                data-bs-ride="carousel">
-                                <!--Slides-->
-                                <div class="carousel-inner product-links-wap" role="listbox">
-
-                                    <!--First slide-->
-                                    <div class="carousel-item active">
-                                        <div class="row">
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img"
-                                                        src="assets/img/brand_01.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img"
-                                                        src="assets/img/brand_02.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img"
-                                                        src="assets/img/brand_03.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img"
-                                                        src="assets/img/brand_04.png" alt="Brand Logo"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--End First slide-->
-
-                                    <!--Second slide-->
-                                    <div class="carousel-item">
-                                        <div class="row">
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img"
-                                                        src="assets/img/brand_01.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img"
-                                                        src="assets/img/brand_02.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img"
-                                                        src="assets/img/brand_03.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img"
-                                                        src="assets/img/brand_04.png" alt="Brand Logo"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--End Second slide-->
-
-                                    <!--Third slide-->
-                                    <div class="carousel-item">
-                                        <div class="row">
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img"
-                                                        src="assets/img/brand_01.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img"
-                                                        src="assets/img/brand_02.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img"
-                                                        src="assets/img/brand_03.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img"
-                                                        src="assets/img/brand_04.png" alt="Brand Logo"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--End Third slide-->
-
-                                </div>
-                                <!--End Slides-->
-                            </div>
-                        </div>
-                        <!--End Carousel Wrapper-->
-
-                        <!--Controls-->
-                        <div class="col-1 align-self-center">
-                            <a class="h1" href="#multi-item-example" role="button" data-bs-slide="next">
-                                <i class="text-light fas fa-chevron-right"></i>
-                            </a>
-                        </div>
-                        <!--End Controls-->
+    <!-- Start Contact -->
+    <div class="container py-5">
+        <div class="row py-5">
+            <form class="col-md-9 m-auto" method="post" role="form" id="contact-form">
+                <div class="row">
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputname">Name</label>
+                        <input required type="text" class="form-control mt-1" id="name" name="name" placeholder="Name">
+                    </div>
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputemail">Email</label>
+                        <input required type="email" class="form-control mt-1" id="email" name="email" placeholder="Email">
                     </div>
                 </div>
-            </div>
+                <div class="mb-3">
+                    <label for="inputsubject">Subject</label>
+                    <input required type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Subject">
+                </div>
+                <div class="mb-3">
+                    <label for="inputmessage">Message</label>
+                    <textarea class="form-control mt-1" id="message" name="message" placeholder="Message"
+                        rows="8"></textarea>
+                </div>
+                <div class="row">
+                    <div class="col text-end mt-2">
+                        <button type="submit" class="btn btn-success btn-lg px-3">Let’s Talk</button>
+                    </div>
+                </div>
+            </form>
         </div>
-    </section>
-    <!--End Brands-->
+        <div id="thank-you-message" style="display: none;">
+            <h2>¡Gracias por ponerte en contacto! Nos pondremos en contacto contigo pronto.</h2>
+        </div>
+    </div>
+    <!-- End Contact -->
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const contactForm = document.getElementById('contact-form');
+            const thankYouMessage = document.getElementById('thank-you-message');
+
+            contactForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+                contactForm.style.display = 'none';
+                thankYouMessage.style.display = 'block';
+            });
+        });
+    </script>
+
 
 
     <!-- Start Footer -->
@@ -892,23 +704,18 @@ https://templatemo.com/tm-559-zay-shop
     <script src="assets/js/custom.js"></script>
     <!-- End Script -->
 
-    <!-- Tu contenido HTML existente -->
-
-    <!-- Script para abrir el modal después de la recarga de la página -->
-    <script>
+    <<script>
         document.addEventListener('DOMContentLoaded', function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const reloadParam = urlParams.get('reload');
+        const contactForm = document.getElementById('contact-form');
+        const thankYouMessage = document.getElementById('thank-you-message');
 
-            if (reloadParam === '1') {
-                // Abre el modal después de que la página se ha recargado
-                $('#shoppingcart').modal('show');
-            } else if (reloadParam === '2') {
-                $('#thanksModal').modal('show');
-            }
+        contactForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        contactForm.style.display = 'none';
+        thankYouMessage.style.display = 'block';
         });
-    </script>
-
+        });
+        </script>
 </body>
 
 </html>
